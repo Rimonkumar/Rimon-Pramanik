@@ -5,25 +5,30 @@ import { motion, useMotionValue, useSpring, useAnimation } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
+
+// ✅ Fixed imports (make sure file names match exactly in /assets/Tech_Icon/)
+import cssIcon from "../assets/Tech_Icon/css.png"
+import nestjsIcon from "../assets/Tech_Icon/nestjs.jpg"
+import cppIcon from "../assets/Tech_Icon/ccc.jpg"
+import csharpIcon from "../assets/Tech_Icon/csharp.jpg"
+import pythonIcon from "../assets/Tech_Icon/phython.jpg"
+import reactIcon from "../assets/Tech_Icon/react.jpg"
+import vueIcon from "../assets/Tech_Icon/vue.jpg"
 
 import javaIcon from "../assets/Tech_Icon/java.png"
 import jsIcon from "../assets/Tech_Icon/js.png"
-import dartIcon from "../assets/Tech_Icon/dart.png"
 import sqlIcon from "../assets/Tech_Icon/sql.png"
 import typescriptIcon from "../assets/Tech_Icon/typescript.png"
 import angularIcon from "../assets/Tech_Icon/angular.png"
-import springBootIcon from "../assets/Tech_Icon/spring-boot.png"
 import hibernateIcon from "../assets/Tech_Icon/hibernate.png"
-import javaFXIcon from "../assets/Tech_Icon/javafx.png"
+import javafxIcon from "../assets/Tech_Icon/javafx.png"
 import flutterIcon from "../assets/Tech_Icon/flutter.png"
 import mysqlIcon from "../assets/Tech_Icon/mysql.png"
-import mongoDb from "../assets/Tech_Icon/mongodb.png"
-import cssIcon from "../assets/Tech_Icon/css.png"
+import mongoDbIcon from "../assets/Tech_Icon/mongodb.png"
 import figmaIcon from "../assets/Tech_Icon/figma.png"
 import bootstrapIcon from "../assets/Tech_Icon/bootstrap.png"
-import postgresql from "../assets/Tech_Icon/postgres.png"
+import postgresIcon from "../assets/Tech_Icon/postgres.png"
 import postmanIcon from "../assets/Tech_Icon/postman.png"
 
 // 3D tilt skill card
@@ -74,7 +79,8 @@ function SkillCard({ skill, proficiency, index, onHoverStart, onHoverEnd }) {
       }}
       whileHover={{
         scale: 1.05,
-        boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4), 0 5px 10px -5px rgba(139, 92, 246, 0.2)"
+        boxShadow:
+          "0 10px 25px -5px rgba(139, 92, 246, 0.4), 0 5px 10px -5px rgba(139, 92, 246, 0.2)",
       }}
     >
       {/* Animated background effect */}
@@ -86,14 +92,18 @@ function SkillCard({ skill, proficiency, index, onHoverStart, onHoverEnd }) {
         animate={{ y: isHovered ? [-2, 2, -2] : 0 }}
         transition={{ duration: 2, repeat: isHovered ? Infinity : 0 }}
       >
-        <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+        <img
+          src={skill.icon}
+          alt={skill.name}
+          className="w-full h-full object-contain"
+        />
       </motion.div>
 
       <span className="text-xs text-center text-white font-medium relative z-10">
         {skill.name}
       </span>
 
-      {/* Proficiency bar that appears on hover */}
+      {/* Proficiency bar */}
       <motion.div
         className="absolute bottom-0 left-0 w-full h-1 bg-gray-700 rounded-b-xl overflow-hidden"
         initial={{ opacity: 0 }}
@@ -106,7 +116,7 @@ function SkillCard({ skill, proficiency, index, onHoverStart, onHoverEnd }) {
         />
       </motion.div>
 
-      {/* Glow effect */}
+      {/* Glow */}
       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent" />
     </motion.div>
   )
@@ -115,7 +125,7 @@ function SkillCard({ skill, proficiency, index, onHoverStart, onHoverEnd }) {
 // Horizontal infinite carousel with pause on hover
 function SkillCarousel({ skills, proficiencies }) {
   const [isPaused, setIsPaused] = useState(false)
-  const duplicatedSkills = [...skills, ...skills] // seamless scroll
+  const duplicatedSkills = [...skills, ...skills]
   const controls = useAnimation()
 
   useEffect(() => {
@@ -131,10 +141,7 @@ function SkillCarousel({ skills, proficiencies }) {
 
   return (
     <div className="overflow-hidden w-full py-4">
-      <motion.div
-        className="flex gap-6 w-max "
-        animate={controls}
-      >
+      <motion.div className="flex gap-6 w-max " animate={controls}>
         {duplicatedSkills.map((skill, index) => (
           <SkillCard
             key={index}
@@ -176,7 +183,7 @@ function AnimatedTabTrigger({ value, activeTab, children }) {
   )
 }
 
-// Floating particles background component
+// Floating particles background
 const FloatingParticles = () => {
   return (
     <div className="absolute inset-0 overflow-hidden -z-10">
@@ -214,10 +221,9 @@ export default function TechStack() {
     Java: 90,
     JavaScript: 85,
     TypeScript: 80,
-    Dart: 75,
     SQL: 85,
+    Nestjs: 75,
     Angular: 80,
-    "Spring Boot": 85,
     Hibernate: 80,
     JavaFX: 75,
     Flutter: 70,
@@ -238,9 +244,14 @@ export default function TechStack() {
       skills: [
         { name: "Java", icon: javaIcon },
         { name: "JavaScript", icon: jsIcon },
-        { name: "Dart", icon: dartIcon },
         { name: "SQL", icon: sqlIcon },
         { name: "TypeScript", icon: typescriptIcon },
+        { name: "HTML", icon: cssIcon }, // placeholder, replace with html icon
+        { name: "CSS", icon: cssIcon },
+        { name: "Nestjs", icon: nestjsIcon },
+        { name: "C++", icon: cppIcon },
+        { name: "C#", icon: csharpIcon },
+        { name: "Python", icon: pythonIcon },
       ],
     },
     {
@@ -249,10 +260,9 @@ export default function TechStack() {
       icon: "🔧",
       skills: [
         { name: "Angular", icon: angularIcon },
-        { name: "Spring Boot", icon: springBootIcon },
-        { name: "Hibernate", icon: hibernateIcon },
-        { name: "JavaFX", icon: javaFXIcon },
-        { name: "Flutter", icon: flutterIcon },
+        { name: "React.js", icon: reactIcon },
+        { name: "Vue.js", icon: vueIcon },
+        { name: "Next.js", icon: nestjsIcon }, // placeholder
       ],
     },
     {
@@ -261,8 +271,8 @@ export default function TechStack() {
       icon: "🗄️",
       skills: [
         { name: "MySQL", icon: mysqlIcon },
-        { name: "PostgreSQL", icon: postgresql },
-        { name: "MongoDB", icon: mongoDb },
+        { name: "PostgreSQL", icon: postgresIcon },
+        { name: "MongoDB", icon: mongoDbIcon },
       ],
     },
     {
@@ -283,96 +293,111 @@ export default function TechStack() {
     },
   ]
 
-  return (
-    <section id="tech" className="py-20 relative overflow-hidden">
-      {/* Background with 90% width */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[90%] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl -z-20" />
-
-      {/* Animated background elements with 90% width */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[90%] -z-10 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-purple-500/10 blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl animate-pulse delay-1000" />
-      </div>
-
-      {/* Floating particles with 90% width */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[60%] -z-10 overflow-hidden">
-        <FloatingParticles />
-      </div>
-
-      {/* Grid pattern overlay with 90% width */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[90%] -z-10 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] rounded-3xl" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="w-[90%] mx-auto relative z-10"
-      >
-        {/* Section header */}
-        <div className="text-center mb-16">
-
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
-            Tech Stack & Skills
-          </h2>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="h-1 w-24 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-3 rounded-full"
-          />
-
-
+return (
+  <section id="tech" className="py-1 pt-5 flex justify-center bg-gray-950 text-white relative">
+    {/* Outer wrapper with gradient border */}
+    <div className="w-[90%] p-[1px] rounded-3xl bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 shadow-2xl">
+      {/* Inner content */}
+      <div className="w-full rounded-3xl bg-gray-950 relative z-10 pb-10 overflow-hidden">
+        
+        {/* Animated background blobs */}
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[90%] -z-10 opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-purple-500/10 blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl animate-pulse" />
+          <div className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl animate-pulse delay-1000" />
         </div>
 
-        <Tabs defaultValue="languages" onValueChange={setActiveTab} className="w-60%">
-          <div className="flex justify-center mb-12">
-            <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-gray-800/50 backdrop-blur-md border border-gray-700/50 p-2 rounded-2xl">
-              {categories.map((category) => (
-                <AnimatedTabTrigger key={category.id} value={category.id} activeTab={activeTab}>
-                  <span className="mr-2">{category.icon}</span>
-                  <span className="hidden sm:inline">{category.name}</span>
-                </AnimatedTabTrigger>
-              ))}
-            </TabsList>
+        {/* Floating particles */}
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[60%] -z-10 overflow-hidden">
+          <FloatingParticles />
+        </div>
+
+        {/* Grid pattern */}
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[90%] -z-10 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] rounded-3xl" />
+
+        {/* Main content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="w-[90%] mx-auto relative z-10"
+        >
+          {/* Section header */}
+          <div className="text-center pt-14 mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+              Tech Stack & Skills
+            </h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="h-1 w-24 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-3 rounded-full"
+            />
           </div>
 
-          {categories.map((category) => (
-            <TabsContent key={category.id} value={category.id} className="focus-visible:outline-none">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
+          <Tabs defaultValue="languages" onValueChange={setActiveTab} className="w-60%">
+            <div className="flex justify-center mb-12">
+              <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-gray-800/50 backdrop-blur-md border border-gray-700/50 p-2 rounded-2xl">
+                {categories.map((category) => (
+                  <AnimatedTabTrigger
+                    key={category.id}
+                    value={category.id}
+                    activeTab={activeTab}
+                  >
+                    <span className="mr-2">{category.icon}</span>
+                    <span className="hidden sm:inline">{category.name}</span>
+                  </AnimatedTabTrigger>
+                ))}
+              </TabsList>
+            </div>
+
+            {categories.map((category) => (
+              <TabsContent
+                key={category.id}
+                value={category.id}
+                className="focus-visible:outline-none"
               >
-                <Card className="bg-gray-800/40 backdrop-blur-md border-2 py-3 border-purple-500 rounded-2xl overflow-hidden shadow-2xl w-[80%] mx-auto">
-                  <CardContent className="p-5 md:p-4">
-                    <div className="flex items-center justify-between mb-8">
-                      <h3 className="text-xl font-semibold flex items-center gap-3 pl-20 text-white">
-                        <span className="text-2xl">{category.icon}</span>
-                        <span>{category.name}</span>
-                      </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Card className="bg-gray-800/40 backdrop-blur-md border-2 py-3 border-purple-500 rounded-2xl overflow-hidden shadow-2xl w-[80%] mx-auto">
+                    <CardContent className="p-5 md:p-4">
+                      <div className="flex items-center justify-between mb-8">
+                        <h3 className="text-xl font-semibold flex items-center gap-3 pl-20 text-white">
+                          <span className="text-2xl">{category.icon}</span>
+                          <span>{category.name}</span>
+                        </h3>
 
-                      <Badge variant="secondary" className="bg-purple-500/20   text-purple-300 hover:bg-purple-500/30">
-                        {category.skills.length} {category.skills.length === 1 ? "Skill" : "Skills"}
-                      </Badge>
-                    </div>
+                        <Badge
+                          variant="secondary"
+                          className="bg-purple-500/20 text-purple-300 hover:bg-purple-500/30"
+                        >
+                          {category.skills.length}{" "}
+                          {category.skills.length === 1 ? "Skill" : "Skills"}
+                        </Badge>
+                      </div>
 
-                    <div className="w-[80%] mx-auto border-2 border-purple-500 rounded-2xl p-4">
-                      <SkillCarousel skills={category.skills} proficiencies={proficiencies} />
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </TabsContent>
-          ))}
-        </Tabs>
+                      <div className="w-[80%] mx-auto border-2  border-purple-500 rounded-2xl p-4">
+                        <SkillCarousel
+                          skills={category.skills}
+                          proficiencies={proficiencies}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);
 
 
-      </motion.div>
-    </section>
-  )
 }

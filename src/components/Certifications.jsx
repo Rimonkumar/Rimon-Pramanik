@@ -26,45 +26,53 @@ export default function Certifications() {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section id="certifications " className="p-20" >
-      <div className="container w-[100%] mx-auto text-center p-10 px-8 rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">Certifications</h2>
-        <p className="text-gray-300 mt-2">Here are some of my certifications and achievements.</p>
+    <section id="certifications" className="py-1 flex justify-center bg-gray-950">
+      {/* Outer animated gradient border wrapper */}
+      <div className="w-[90%] rounded-3xl p-[1px] bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 animate-gradient shadow-2xl">
+        {/* Inner content */}
+        <div className="rounded-3xl bg-gray-950 border border-gray-800 p-10">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Certifications</h2>
+            <p className="text-gray-300 mt-2">
+              Here are some of my certifications and achievements.
+            </p>
+          </div>
 
-        <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {CERTIFICATES.map((cert, index) => (
-            <motion.article
-              key={cert.title}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: index * 0.2, type: "spring", stiffness: 100 }}
-              whileHover={{ scale: 1.05 }}
-              className="relative rounded-2xl p-6 cursor-pointer 
-                         bg-white/10 backdrop-blur-md border border-white/20
-                         shadow-lg hover:shadow-2xl transition-all duration-500"
-              onClick={() => setSelected(cert.src)}
-            >
-              {/* Certificate Image with Overlay */}
-              <div className="relative aspect-video rounded-xl overflow-hidden mb-4 border-2 border-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 group">
-                <img
-                  src={cert.src}
-                  alt={cert.title}
-                  className="w-full h-full object-cover rounded-xl"
-                />
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 rounded-xl">
-                  <span className="text-white font-bold text-lg">View</span>
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {CERTIFICATES.map((cert, index) => (
+              <motion.article
+                key={cert.title}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: index * 0.2, type: "spring", stiffness: 100 }}
+                whileHover={{ scale: 1.05 }}
+                className="relative rounded-2xl p-6 cursor-pointer 
+                           bg-white/10 backdrop-blur-md border border-white/20
+                           shadow-lg hover:shadow-2xl transition-all duration-500"
+                onClick={() => setSelected(cert.src)}
+              >
+                {/* Certificate Image with Overlay */}
+                <div className="relative aspect-video rounded-xl overflow-hidden mb-4 border-2 border-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 group">
+                  <img
+                    src={cert.src}
+                    alt={cert.title}
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 rounded-xl">
+                    <span className="text-white font-bold text-lg">View</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Certificate Info */}
-              <h3 className="text-xl font-bold text-white">{cert.title}</h3>
-              <p className="mt-2 text-gray-200 flex-1">{cert.desc}</p>
+                {/* Certificate Info */}
+                <h3 className="text-xl font-bold text-white">{cert.title}</h3>
+                <p className="mt-2 text-gray-200 flex-1">{cert.desc}</p>
 
-              {/* Gradient Accent Bottom Line */}
-              <div className="h-1 w-full mt-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full"></div>
-            </motion.article>
-          ))}
+                {/* Gradient Accent Bottom Line */}
+                <div className="h-1 w-full mt-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full"></div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -99,6 +107,19 @@ export default function Certifications() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Gradient Animation Style */}
+      <style>{`
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradientMove 6s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </section>
   );
 }
